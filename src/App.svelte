@@ -4,9 +4,9 @@
   import Container from './components/Container.svelte';
   import Frontend from './components/Frontend.svelte';
   import Login from './components/Login.svelte';
-  import { isLoginValid } from './services/store';
+  import { isLoginValid, slideIndex } from './services/store';
 
-  let index = -1;
+  let index = slideIndex;
   let isAuth = false;
   const color_intern = 'darkMagenta';
   const color_extern = 'orange';
@@ -15,50 +15,66 @@
   const color_orange = 'orange';
   const color_dark_orange = 'darkorange';
 
-  const unsubscribe = isLoginValid.subscribe((value) => {
+  const unsubscribeIsLoginValid = isLoginValid.subscribe((value) => {
     isAuth = value;
   });
 
-  // let key;
-  // let keyCode;
+  const unsubscribeSlideIndex = slideIndex.subscribe((value) => {
+    index = value;
+  });
 
-  // function next() {
-  //   if (index > 4) {
-  //     return;
-  //   }
-  //   ++index;
-  // }
-  // function prev() {
-  //   if (index <script 0) {
-  //     return;
-  //   }
+  let key;
+  let keyCode;
 
-  //   --index;
-  // }
-  // function handleKeydown(event) {
-  //   key = event.key;
-  //   keyCode = event.keyCode;
-  //   if (key === 'ArrowRight') {
-  //     next();
-  //   } else if (key === 'ArrowLeft') {
-  //     prev();
-  //   } else if (key === 'ArrowUp' || key === 'ArrowDown') {
-  //     index = -1;
-  //   }
-  // }
+  function next() {
+    if (index > 4) {
+      return;
+    }
+    slideIndex.update((value) => value + 1);
+  }
+  function prev() {
+    if (index < 0) {
+      return;
+    }
+
+    slideIndex.update((value) => value - 1);
+  }
+  function handleKeydown(event) {
+    key = event.key;
+    keyCode = event.keyCode;
+
+    if (keyCode > 47) {
+      console.log('set numeric index');
+      slideIndex.set(Number(key));
+    }
+    if (key === 'ArrowRight') {
+      next();
+    } else if (key === 'ArrowLeft') {
+      prev();
+    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      index = 0;
+    }
+  }
+
+  $: console.log(key, keyCode, index, typeof key);
 </script>
 
-<!-- <svelte:window on:keydown={handleKeydown} /> -->
+<svelte:window on:keydown={handleKeydown} />
 {#if !isAuth}
   <Login />
 {:else}
   <div class="wrapper">
     <div class="wrapper-inner">
-      <Container color="oliveDrab">End User</Container>
+      <Container color={color_intern}>
+        Vertriebsportal Autohaus Weinberg
+      </Container>
+
       <div class="my-1" />
-      <Frontend />
+      {#if index >= 2}
+        <Frontend />
+      {/if}
       <div class="my-1" />
-      <Backend />
+      <Backend {index} />
     </div>
   </div>
 {/if}
