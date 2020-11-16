@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   export let color = 'orange';
   export let classes = '';
 </script>
@@ -23,6 +24,9 @@
   }
 </style>
 
-<div class={'container ' + classes} style={'background: ' + color}>
+<div
+  transition:fade
+  class={'container ' + classes}
+  style={'background: ' + color}>
   <slot />
 </div>

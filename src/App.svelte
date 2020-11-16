@@ -8,12 +8,10 @@
 
   let index = slideIndex;
   let isAuth = false;
+  let key;
+  let keyCode;
+
   const color_intern = 'darkMagenta';
-  const color_extern = 'orange';
-  const color_symfony = 'black';
-  const color_kibana = 'cadetBlue';
-  const color_orange = 'orange';
-  const color_dark_orange = 'darkorange';
 
   const unsubscribeIsLoginValid = isLoginValid.subscribe((value) => {
     isAuth = value;
@@ -23,15 +21,13 @@
     index = value;
   });
 
-  let key;
-  let keyCode;
-
   function next() {
     if (index > 4) {
       return;
     }
     slideIndex.update((value) => value + 1);
   }
+
   function prev() {
     if (index < 0) {
       return;
@@ -39,12 +35,12 @@
 
     slideIndex.update((value) => value - 1);
   }
+
   function handleKeydown(event) {
     key = event.key;
     keyCode = event.keyCode;
 
     if (keyCode > 47) {
-      console.log('set numeric index');
       slideIndex.set(Number(key));
     }
     if (key === 'ArrowRight') {
@@ -55,8 +51,6 @@
       index = 0;
     }
   }
-
-  $: console.log(key, keyCode, index, typeof key);
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
