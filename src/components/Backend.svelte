@@ -13,15 +13,6 @@
   $: console.log('backend index', index);
 </script>
 
-<style>
-  .backend {
-    width: 100%;
-    display: grid;
-    grid-gap: 2px;
-    grid-template-columns: 150px 1fr 150px;
-  }
-</style>
-
 {#if index >= 0}
   <img
     width="80"

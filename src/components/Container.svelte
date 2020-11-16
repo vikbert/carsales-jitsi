@@ -2,6 +2,17 @@
   import { fade } from 'svelte/transition';
   export let color = 'orange';
   export let classes = '';
+  let classAnimation = '';
+  let classDiv = '';
+
+  $: classDiv = 'container ' + classes + ' ' + classAnimation;
+  function handleMouseOver() {
+    classAnimation = 'shadow-pop-tr';
+  }
+
+  function handleMouseOut() {
+    classAnimation = '';
+  }
 </script>
 
 <style>
@@ -14,8 +25,8 @@
     font-weight: bold;
     text-align: center;
     cursor: pointer;
-    border-radius: 8px;
-    margin: 1px;
+    /* border-radius: 8px; */
+    margin: 4px;
   }
   .empty {
     color: white;
@@ -25,8 +36,10 @@
 </style>
 
 <div
+  on:mouseover={handleMouseOver}
+  on:mouseout={handleMouseOut}
   transition:fade
-  class={'container ' + classes}
+  class={classDiv}
   style={'background: ' + color}>
   <slot />
 </div>
