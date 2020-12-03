@@ -2,6 +2,8 @@
   import Container from './Container.svelte';
   const color_react = 'deepskyblue';
   const color_react_dark = 'dodgerBlue';
+
+  export let index = 0;
 </script>
 
 <div class="frontend">

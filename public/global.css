@@ -1,26 +1,33 @@
-body {
-  background-color: white;
+html {
+  margin: 0;
+  padding: 0;
 }
 .wrapper {
   width: 100vw;
+  height: 100vw;
+  background-image: url("bg.png");
   display: grid;
-  place-items: center;
+  grid-template-columns: 665px 1fr;
 }
 
-.wrapper-inner {
+.wrapper-right {
   width: 645px;
   text-align: center;
 }
 
+.wrapper-left {
+  padding: 16px;
+}
+
 .frontend {
   display: grid;
-  grid-gap: 6px;
+  grid-gap: 3px;
   grid-template: auto auto auto / auto auto auto;
 }
 .backend {
   width: 100%;
   display: grid;
-  grid-gap: 6px;
+  grid-gap: 3px;
   grid-template-columns: 150px 1fr 150px;
 }
 

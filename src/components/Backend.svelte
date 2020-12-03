@@ -1,10 +1,9 @@
 <script>
-  import Box from './Box.svelte';
   import Container from './Container.svelte';
 
   const color_intern = 'darkMagenta';
   const color_extern = 'orange';
-  const color_symfony = 'black';
+  const color_symfony = '#000000c2';
   const color_stackit = 'DarkSlateGray';
   const color_future = 'orangeRed';
 
@@ -52,8 +51,7 @@
 
     <Container classes="opacity-75" color={color_intern}>SIAM</Container>
     <Container classes="sf opacity-75" color={color_symfony}>
-      <Box>OAuth2</Box>
-      <Box>SIAM SSO</Box>
+      OAuth2 + SIAM SSO
     </Container>
     <Container classes="opacity-75" color={color_extern}>A&M REST</Container>
 
@@ -62,8 +60,7 @@
       ⚠️ SAP Module
     </Container>
     <Container classes="sf opacity-75" color={color_symfony}>
-      <Box>Monolog</Box>
-      <Box>Kibana + Dynat.</Box>
+      Monolog + Kibana + Dynat
     </Container>
     <Container color={color_future}>Mobile.de</Container>
   {/if}
@@ -71,8 +68,7 @@
   {#if index >= 5}
     <Container classes="opacity-75" color={color_stackit}>S3 Server</Container>
     <Container classes="opacity-75" color={color_symfony}>
-      <Box>Import</Box>
-      <Box>Export</Box>
+      Import + Export
     </Container>
     <Container classes="opacity-75" color={color_stackit}>
       Docker Cron
