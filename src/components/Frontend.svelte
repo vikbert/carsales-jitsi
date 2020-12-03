@@ -1,13 +1,14 @@
 <script>
   import Container from './Container.svelte';
   const color_react = 'deepskyblue';
-  const color_react_dark = 'dodgerBlue';
 
-  export let index = 0;
+  export let infoIndex = null;
 </script>
 
 <div class="frontend">
-  <Container color={color_react}>Material UI</Container>
+  <Container color={color_react}>
+    <span on:click={() => infoIndex.set('material')}>Material UI</span>
+  </Container>
   <Container color={color_react}>Redux + Middleware</Container>
   <Container color={'grey'}>Axios</Container>
   <Container color={color_react}>React Component</Container>

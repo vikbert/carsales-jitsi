@@ -3,5 +3,6 @@
 </script>
 
 <Animation>
-  <img src="react.png" alt="frontend">
+  <img src="material2.png" alt="frontend">
+  <img src="material1.png" alt="frontend">
 </Animation>

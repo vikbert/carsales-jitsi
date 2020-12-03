@@ -8,15 +8,15 @@
   const color_future = 'orangeRed';
 
   export let index = 0;
+  export let infoIndex = null;
 
   $: console.log('backend index', index);
 </script>
 
 {#if index >= 0}
-  <img
-    width="80"
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/220px-React-icon.svg.png"
-    alt="" />
+<div class="icon" on:click={() => infoIndex.set('react')} on:mouseout={() => infoIndex.set('empty')}>
+  <span class="iconify" data-icon="cib:react" data-inline="false" width="60"/>
+</div>
   <div class="backend">
     <div />
     <Container color={color_symfony}>REST API</Container>
