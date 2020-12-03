@@ -26,7 +26,7 @@
     text-align: center;
     cursor: pointer;
     /* border-radius: 8px; */
-    margin: 4px;
+    margin: 1px 4px;
   }
   .empty {
     color: white;
