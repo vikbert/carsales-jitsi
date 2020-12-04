@@ -20,13 +20,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px 5px;
+    padding: 14px 5px;
     color: white;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
-    /* border-radius: 8px; */
-    margin: 1px 4px;
+    margin: 3px 4px;
   }
   .empty {
     color: white;

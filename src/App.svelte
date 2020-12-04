@@ -7,6 +7,7 @@
   import { isLoginValid, slideIndex, infoIndex } from './services/store';
   import react from './components/infos/react.svelte';
   import material from './components/infos/material-ui.svelte';
+  import Redux from './components/infos/redux.svelte';
 
   let index = slideIndex;
   let info = infoIndex;
@@ -28,40 +29,33 @@
     info = value;
   });
 
-  function next() {
-    if (index > 4) {
-      return;
-    }
-    slideIndex.update((value) => value + 1);
-  }
-
-  function prev() {
-    if (index < 0) {
-      return;
-    }
-
-    slideIndex.update((value) => value - 1);
-  }
-
   function handleKeydown(event) {
     key = event.key;
     keyCode = event.keyCode;
-    console.log(key, keyCode);
+    console.table({
+      'key': key,
+      'keyCode': keyCode
+    });
+
 
     if (keyCode >= 49 && keyCode < 56) {
       slideIndex.set(Number(key));
+    }
+
+    // enter "space" key
+    if (keyCode === 32) {
+      infoIndex.set('');
     }
   }
 
   const options = {
     empty: 'no data',
     react: { component: react },
-    material: { component: material },
+    material: { component: Redux },
   };
 
   let selected = options['empty'];
   $: {
-    console.log('info index', info);
     if (options.hasOwnProperty(info)) {
       selected = options[info];
     } else {
@@ -75,7 +69,7 @@
   <Login />
 {:else}
   <div class="wrapper">
-    <div class="wrapper-right">
+    <div class="wrapper-left">
       <Container color={color_intern}>
         <span>CarSales - Vertriebsportal</span>
       </Container>
@@ -92,7 +86,7 @@
         to open the slides
       </p>
     </div>
-    <div class="wrapper-left">
+    <div class="wrapper-right">
       <div transition:fade={{ duration: 2000 }}>
         <svelte:component this={selected.component} />
       </div>

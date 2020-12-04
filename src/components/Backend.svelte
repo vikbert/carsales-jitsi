@@ -10,12 +10,14 @@
   export let index = 0;
   export let infoIndex = null;
 
-  $: console.log('backend index', index);
+  $: console.table({
+    'slide index:': index
+  });
 </script>
 
 {#if index >= 0}
-<div class="icon" on:click={() => infoIndex.set('react')} on:mouseout={() => infoIndex.set('empty')}>
-  <span class="iconify" data-icon="cib:react" data-inline="false" width="60"/>
+<div class="icon" on:click={() => infoIndex.set('react')}>
+   <span class="iconify" data-icon="cib:react" data-inline="false" width="60" style="cursor: pointer"/>
 </div>
   <div class="backend">
     <div />
@@ -29,11 +31,8 @@
   <div class="backend">
     <Container color={color_intern}>API Internal</Container>
     <Container color={color_symfony}>
-      <img
-        style="filter: invert(1)"
-        width="40"
-        src="https://symfony.com/logos/symfony_black_03.png"
-        alt="" />
+      <span class="iconify" data-icon="cib:symfony" data-inline="false" width="30"></span>
+      <span class="iconify" data-icon="cib:docker" data-inline="false" width="30"></span>
     </Container>
     <Container color={color_extern}>API External</Container>
   </div>
@@ -79,3 +78,9 @@
   <!-- content here -->
   <Container color={color_stackit}>STACKIT + Azure DevOps</Container>
 {/if}
+
+<style>
+  .iconify {
+    margin: 0 10px;
+  }
+</style>
